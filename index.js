@@ -16,6 +16,15 @@ function cleanUp(){
     resultDisplay.textContent = "";
 }
 
+function resetScore(){
+    playerScore = 0;
+    computerScore = 0;
+
+    cleanUp();
+    playerScoreDisplay.textContent = `${playerScore}`;
+    computerScoreDisplay.textContent = `${computerScore}`;
+}
+
 function playerWin(){
     resultDisplay.textContent = "Player Wins!";
     resultDisplay.classList.add("greenText");

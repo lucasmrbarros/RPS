@@ -50,3 +50,13 @@ h1{
 .scoreDisplay{
     font-size: 2rem;
 }
+
+#resetScore{
+    font-size: 2rem;
+    background-color: tomato;
+    border: none;
+    border-radius: 15px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
