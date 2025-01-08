@@ -1,13 +1,24 @@
 const playerDisplay = document.getElementById("playerDisplay");
 const computerDisplay = document.getElementById("computerDisplay");
 const resultDisplay = document.getElementById("resultDisplay");
+const choices = ['rock', 'paper', 'scissor']
+
+function cleanUp(){
+    resultDisplay.classList.remove("greenText", "redText");
+
+    playerDisplay.textContent = "Players: ";
+    computerDisplay.textContent = "Computer: ";
+    resultDisplay.textContent = "";
+}
 
 function playerWin(){
     resultDisplay.textContent = "Player Wins!";
+    resultDisplay.classList.add("greenText");
 }
 
 function computerWin(){
     resultDisplay.textContent = "Computer Wins!";
+    resultDisplay.classList.add("redText");
 }
 
 function tie(){
@@ -15,61 +26,28 @@ function tie(){
 }
 
 function playGame(playerChoice){
-    let computerTurn = Math.floor(Math.random() * 3) + 1;
+    let computerChoice = choices[Math.floor(Math.random() * 3)];
 
-    switch (computerTurn){
-        case 1:
-            computerDisplay.textContent += "Rock";
-            break;
-        case 2:
-            computerDisplay.textContent += "Paper";
-            break;
-        case 3:
-            computerDisplay.textContent += "Scissor"
-    }
+    cleanUp();
 
-    if(playerChoice == 'rock'){
-        playerDisplay.textContent += "Rock";
-        
-        if(computerTurn == 1){
-            tie();
-        }else if(computerTurn == 2){
-            computerWin();
-        }
-        else{
-            playerWin();
-        }
-    }
-    else if(playerChoice == 'paper'){
-        playerDisplay.textContent += "Paper";
+    playerDisplay.textContent += `${playerChoice}`;
+    computerDisplay.textContent += `${computerChoice}`;
 
-        if(computerTurn == 1){
-            playerWin();
-        }
-        else if(computerTurn == 2){
-            tie();
-        }
-        else{
-            computerWin();
-        }
+
+    if(playerChoice == computerChoice){
+        tie();
     }
     else{
-        playerDisplay.textContent += "Scissor";
-        
-        if(computerTurn	== 1){
-            computerWin();
-        }
-        if(computerTurn == 2){
-            playerWin();
-        }
-        else{
-            tie();
+        switch(playerChoice){
+            case 'rock':   
+                computerChoice === 'paper' ? computerWin() : playerWin();
+                break;
+            case 'paper':
+                computerChoice === 'scissor' ? computerWin() : playerWin();
+                break;
+            case 'scissor':
+                computerChoice === 'rock' ? computerWin() : playerWin();
+                break;
         }
     }
-
-    setTimeout(() => {
-        playerDisplay.textContent = "Players:";
-        computerDisplay.textContent = "Computer:";
-        resultDisplay.textContent = "";
-    }, 5000);
 }
